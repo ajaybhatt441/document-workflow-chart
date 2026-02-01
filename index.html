@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Generation Workflow</title>
+    <link rel="stylesheet" href="workflow-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Mermaid.js for flowcharts -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-glow"></div>
+            <h1>📄 Document Generation Workflow</h1>
+            <p class="subtitle">AI-Powered Corporate Legal Document Drafting System</p>
+        </header>
+
+        <!-- ============================================
+             SIMPLE MERMAID FLOWCHART SECTION
+             ============================================ -->
+        <div class="mermaid-section">
+            <div class="section-header mermaid-header">
+                <span class="section-icon">📊</span>
+                <h2>Simple Workflow Overview</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="mermaid-container">
+                <pre class="mermaid">
+flowchart TD
+    subgraph USER["👤 USER WORKFLOW"]
+        A[🌍 Step 1: Select Jurisdiction<br/>Country/State] --> B[📋 Step 2: Select Request Type<br/>e.g., AGM, Dividend, Banking]
+        B --> C[✏️ Step 3: Fill Details<br/>+ Choose Minutes OR Resolution<br/>+ Optional User Notes]
+        C --> D[🤖 Step 4: Generate 3 Drafts]
+    end
+    
+    subgraph TECH["⚙️ TECH STACK"]
+        D --> E{🔍 Check Blob Storage<br/>Template Exists?}
+        E -->|YES| F[📦 Fetch Template]
+        E -->|NO| G[🤖 Generate via LLM]
+        G --> H[💾 Store in Blob]
+        H --> F
+        F --> I[✨ Generate Outputs]
+    end
+    
+    subgraph OUTPUT["📤 OUTPUT"]
+        I --> J[🧠 AI Draft]
+        I --> K[📄 Template Fill]
+        I --> L[⚡ Combined]
+    end
+
+    style A fill:#6366f1,stroke:#4f46e5,color:#fff
+    style B fill:#06b6d4,stroke:#0891b2,color:#fff
+    style C fill:#f59e0b,stroke:#d97706,color:#fff
+    style D fill:#10b981,stroke:#059669,color:#fff
+    style E fill:#8b5cf6,stroke:#7c3aed,color:#fff
+    style F fill:#22c55e,stroke:#16a34a,color:#fff
+    style G fill:#ef4444,stroke:#dc2626,color:#fff
+    style H fill:#eab308,stroke:#ca8a04,color:#fff
+    style I fill:#3b82f6,stroke:#2563eb,color:#fff
+    style J fill:#a855f7,stroke:#9333ea,color:#fff
+    style K fill:#14b8a6,stroke:#0d9488,color:#fff
+    style L fill:#f97316,stroke:#ea580c,color:#fff
+                </pre>
+            </div>
+        </div>
+
+        <!-- Main Workflow Container -->
+        <div class="workflow-container">
+
+            <!-- Section Divider: User Workflow -->
+            <div class="section-header user-section">
+                <span class="section-icon">👤</span>
+                <h2>User Workflow (Detailed)</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <!-- Step 1 -->
+            <div class="step-card step-1 animate-in">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-header">
+                        <span class="step-icon">🌍</span>
+                        <h3>Select Jurisdiction</h3>
+                    </div>
+                    <p class="step-description">Choose the country or state for your corporate legal document</p>
+                    <div class="step-visual">
+                        <div class="jurisdiction-grid">
+                            <div class="jurisdiction-item">🇺🇸 USA</div>
+                            <div class="jurisdiction-item">🇬🇧 UK</div>
+                            <div class="jurisdiction-item">🇮🇳 India</div>
+                            <div class="jurisdiction-item">🇭🇰 Hong Kong</div>
+                            <div class="jurisdiction-item">🇸🇬 Singapore</div>
+                            <div class="jurisdiction-item active">+ More</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Connector Arrow -->
+            <div class="connector">
+                <div class="connector-line"></div>
+                <div class="connector-arrow">▼</div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step-card step-2 animate-in">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-header">
+                        <span class="step-icon">📋</span>
+                        <h3>Select Request Type</h3>
+                    </div>
+                    <p class="step-description">Choose the kind of corporate document request you need</p>
+                    <div class="step-visual">
+                        <div class="request-categories">
+                            <div class="category-group">
+                                <div class="category-title">📊 Meetings & Governance</div>
+                                <div class="request-types">
+                                    <div class="request-chip">Calling an AGM</div>
+                                    <div class="request-chip">Calling an EGM</div>
+                                    <div class="request-chip">Approval of Audited Accounts</div>
+                                </div>
+                            </div>
+                            <div class="category-group">
+                                <div class="category-title">💰 Financial & Banking</div>
+                                <div class="request-types">
+                                    <div class="request-chip">Dividend Distribution</div>
+                                    <div class="request-chip">Banking Facilities / Loan Approval</div>
+                                    <div class="request-chip">Opening/Closing Bank Accounts</div>
+                                    <div class="request-chip">Change Bank Signatories</div>
+                                </div>
+                            </div>
+                            <div class="category-group">
+                                <div class="category-title">👥 Directors & Officers</div>
+                                <div class="request-types">
+                                    <div class="request-chip">Appointment of Directors</div>
+                                    <div class="request-chip">Re-appointment of Auditor</div>
+                                    <div class="request-chip">Change of Particulars</div>
+                                    <div class="request-chip">Grant Power of Attorney</div>
+                                </div>
+                            </div>
+                            <div class="category-group">
+                                <div class="category-title">📝 Company Changes</div>
+                                <div class="request-types">
+                                    <div class="request-chip">Change Registered Office</div>
+                                    <div class="request-chip">Change Business Scope</div>
+                                    <div class="request-chip">Amendment to Articles</div>
+                                    <div class="request-chip">Significant Contracts</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Connector Arrow -->
+            <div class="connector">
+                <div class="connector-line"></div>
+                <div class="connector-arrow">▼</div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step-card step-3 animate-in">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-header">
+                        <span class="step-icon">✏️</span>
+                        <h3>Fill Input Details</h3>
+                    </div>
+                    <p class="step-description">Provide mandatory information based on request type and select document
+                        format</p>
+
+                    <!-- Sub-sections -->
+                    <div class="sub-sections">
+                        <div class="sub-section mandatory">
+                            <div class="sub-header">
+                                <span class="required-badge">Required</span>
+                                <span class="sub-title">Mandatory Inputs (varies by request type)</span>
+                            </div>
+                            <div class="input-example-box">
+                                <div class="example-label">Example: For "Re-appointment of Auditor"</div>
+                                <div class="input-preview">
+                                    <div class="input-field">Company Name</div>
+                                    <div class="input-field">Auditor Name</div>
+                                    <div class="input-field">Term of Office</div>
+                                    <div class="input-field">Directors</div>
+                                </div>
+                            </div>
+                            <div class="input-example-box">
+                                <div class="example-label">Example: For "Dividend Distribution"</div>
+                                <div class="input-preview">
+                                    <div class="input-field">Company Name</div>
+                                    <div class="input-field">Dividend Amount</div>
+                                    <div class="input-field">No. of Shares</div>
+                                    <div class="input-field">Payable Date</div>
+                                    <div class="input-field">Record Date</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section document-type">
+                            <div class="sub-header">
+                                <span class="choice-badge">Choose One</span>
+                                <span class="sub-title">Document Type</span>
+                            </div>
+                            <div class="toggle-options">
+                                <div class="toggle-option active">
+                                    <span class="toggle-icon">📝</span>
+                                    <div class="toggle-content">
+                                        <span class="toggle-title">Written Resolution</span>
+                                        <span class="toggle-desc">Decision approved in writing without holding a
+                                            meeting</span>
+                                    </div>
+                                </div>
+                                <div class="toggle-divider">OR</div>
+                                <div class="toggle-option">
+                                    <span class="toggle-icon">📊</span>
+                                    <div class="toggle-content">
+                                        <span class="toggle-title">Minutes of Meeting</span>
+                                        <span class="toggle-desc">Official written record of what was discussed and
+                                            decided</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section user-input">
+                            <div class="sub-header">
+                                <span class="optional-badge">Optional</span>
+                                <span class="sub-title">Additional User Input</span>
+                            </div>
+                            <div class="user-input-box">
+                                <span class="textarea-icon">💬</span>
+                                <span class="textarea-placeholder">Add any specific requirements, special clauses, or
+                                    additional notes you want included in the document...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Connector Arrow -->
+            <div class="connector">
+                <div class="connector-line"></div>
+                <div class="connector-arrow">▼</div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step-card step-4 animate-in">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <div class="step-header">
+                        <span class="step-icon">🤖</span>
+                        <h3>AI Generates 3 Drafts</h3>
+                    </div>
+                    <p class="step-description">Choose from three different output options tailored to your needs</p>
+
+                    <div class="drafts-grid">
+                        <div class="draft-card draft-ai">
+                            <div class="draft-icon">🧠</div>
+                            <h4>AI Draft</h4>
+                            <p>Fully AI-generated document with smart legal language and contextual suggestions</p>
+                            <div class="draft-badge ai-badge">Smart</div>
+                        </div>
+                        <div class="draft-card draft-template">
+                            <div class="draft-icon">📄</div>
+                            <h4>Template Fill</h4>
+                            <p>Standard template with your inputs filled in - fast and reliable</p>
+                            <div class="draft-badge template-badge">Quick</div>
+                        </div>
+                        <div class="draft-card draft-combined">
+                            <div class="draft-icon">⚡</div>
+                            <h4>Combined Output</h4>
+                            <p>Template structure enhanced with AI improvements - best of both worlds</p>
+                            <div class="draft-badge combined-badge">Recommended</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Divider: Tech Stack -->
+            <div class="section-header tech-section">
+                <span class="section-icon">⚙️</span>
+                <h2>Tech Stack & Backend Flow</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <!-- Tech Flow Diagram -->
+            <div class="tech-flow-container">
+                <div class="tech-flow">
+
+                    <!-- Input Node -->
+                    <div class="tech-node input-node">
+                        <div class="node-icon">📥</div>
+                        <div class="node-content">
+                            <h4>User Inputs Received</h4>
+                            <p>Jurisdiction + Request Type + Document Type + Details</p>
+                        </div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="tech-arrow">↓</div>
+
+                    <!-- Decision Diamond -->
+                    <div class="decision-container">
+                        <div class="tech-node decision-node">
+                            <div class="diamond-shape">
+                                <div class="diamond-content">
+                                    <span class="decision-icon">🔍</span>
+                                    <span class="decision-text">Check Blob Storage</span>
+                                </div>
+                            </div>
+                            <p class="decision-question">Template exists for this combination?</p>
+                        </div>
+
+                        <!-- Decision Branches -->
+                        <div class="decision-branches">
+                            <div class="branch yes-branch">
+                                <span class="branch-label yes-label">✓ YES</span>
+                                <div class="branch-arrow">↓</div>
+                                <div class="tech-node small-node fetch-node">
+                                    <div class="node-icon">📦</div>
+                                    <span>Fetch Template from Blob</span>
+                                </div>
+                            </div>
+                            <div class="branch no-branch">
+                                <span class="branch-label no-label">✗ NO</span>
+                                <div class="branch-arrow">↓</div>
+                                <div class="tech-node small-node generate-node">
+                                    <div class="node-icon">🤖</div>
+                                    <span>Generate Template via LLM</span>
+                                </div>
+                                <div class="branch-arrow">↓</div>
+                                <div class="tech-node small-node store-node">
+                                    <div class="node-icon">💾</div>
+                                    <span>Store in Blob for Future Use</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Merge Point -->
+                    <div class="merge-container">
+                        <div class="merge-arrows">
+                            <span class="merge-left">↘</span>
+                            <span class="merge-right">↙</span>
+                        </div>
+                        <div class="tech-node merge-node">
+                            <div class="node-icon">🔀</div>
+                            <div class="node-content">
+                                <h4>Template Ready</h4>
+                                <p>Process with user inputs</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="tech-arrow down-arrow">↓</div>
+
+                    <!-- Final Output -->
+                    <div class="final-output">
+                        <div class="tech-node output-node">
+                            <div class="node-icon">✨</div>
+                            <div class="node-content">
+                                <h4>Generate 3 Draft Outputs</h4>
+                            </div>
+                        </div>
+                        <div class="output-cards">
+                            <div class="mini-output">🧠 AI Draft</div>
+                            <div class="mini-output">📄 Template Fill</div>
+                            <div class="mini-output">⚡ Combined</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blob Storage Visualization -->
+            <div class="storage-visual">
+                <div class="storage-header">
+                    <span class="storage-icon">☁️</span>
+                    <h3>Blob Storage Structure</h3>
+                </div>
+                <div class="storage-content">
+                    <div class="storage-box">
+                        <div class="storage-title">📁 Template Mapping</div>
+                        <div class="mapping-example">
+                            <code>
+                                <span class="key">Key:</span> [Jurisdiction]_[RequestType]_[DocType]<br>
+                                <span class="value">Value:</span> Template Content
+                            </code>
+                        </div>
+                        <div class="example-mappings">
+                            <div class="mapping-item">
+                                <span class="mapping-key">HK_ReappointmentAuditor_Resolution</span>
+                                <span class="mapping-arrow">→</span>
+                                <span class="mapping-value">Auditor Template</span>
+                            </div>
+                            <div class="mapping-item">
+                                <span class="mapping-key">SG_DividendDistribution_Minutes</span>
+                                <span class="mapping-arrow">→</span>
+                                <span class="mapping-value">Dividend Template</span>
+                            </div>
+                            <div class="mapping-item">
+                                <span class="mapping-key">UK_BankingFacilities_Resolution</span>
+                                <span class="mapping-arrow">→</span>
+                                <span class="mapping-value">Banking Template</span>
+                            </div>
+                            <div class="mapping-item">
+                                <span class="mapping-key">IN_CallingAGM_Minutes</span>
+                                <span class="mapping-arrow">→</span>
+                                <span class="mapping-value">AGM Template</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Request Types Reference -->
+            <div class="reference-section">
+                <div class="section-header ref-header">
+                    <span class="section-icon">📚</span>
+                    <h2>Available Request Types Reference</h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="reference-grid">
+                    <div class="ref-card">
+                        <div class="ref-icon">👨‍⚖️</div>
+                        <h4>Re-appointment of Auditor</h4>
+                        <p>Appointing the same external auditor again for the next term/year</p>
+                        <div class="ref-inputs">Company Name | Auditor Name | Term of Office | Directors</div>
+                    </div>
+                    <div class="ref-card">
+                        <div class="ref-icon">📅</div>
+                        <h4>Calling an AGM</h4>
+                        <p>Formally arranging and notifying members for yearly shareholders' meeting</p>
+                        <div class="ref-inputs">Company Name | Financial Statements | Dividend | Directors</div>
+                    </div>
+                    <div class="ref-card">
+                        <div class="ref-icon">🏦</div>
+                        <h4>Banking Facilities / Loan</h4>
+                        <p>Authorizing company to obtain loans or use banking facilities</p>
+                        <div class="ref-inputs">Company | Lender | Loan Amount | Purpose | Signatories</div>
+                    </div>
+                    <div class="ref-card">
+                        <div class="ref-icon">💵</div>
+                        <h4>Dividend Distribution</h4>
+                        <p>Approving and authorizing payment of profits to shareholders</p>
+                        <div class="ref-inputs">Company | Dividend Amount | Shares | Payable Date | Record Date</div>
+                    </div>
+                    <div class="ref-card">
+                        <div class="ref-icon">📝</div>
+                        <h4>Significant Contracts</h4>
+                        <p>Approving major agreements or important business deals</p>
+                        <div class="ref-inputs">Company | Contract Details | Counterparty | Consideration</div>
+                    </div>
+                    <div class="ref-card">
+                        <div class="ref-icon">🏢</div>
+                        <h4>Change Registered Office</h4>
+                        <p>Updating the company's official registered address</p>
+                        <div class="ref-inputs">Company | New Address | Effective Date | Directors</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Built with ❤️ for efficient corporate document generation</p>
+        </footer>
+    </div>
+
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            themeVariables: {
+                primaryColor: '#6366f1',
+                primaryTextColor: '#fff',
+                primaryBorderColor: '#818cf8',
+                lineColor: '#94a3b8',
+                secondaryColor: '#1e293b',
+                tertiaryColor: '#0f172a',
+                background: '#1e293b',
+                mainBkg: '#1e293b',
+                nodeBorder: '#6366f1',
+                clusterBkg: 'rgba(99, 102, 241, 0.1)',
+                clusterBorder: 'rgba(99, 102, 241, 0.3)',
+                titleColor: '#f8fafc',
+                edgeLabelBackground: '#1e293b'
+            },
+            flowchart: {
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 20
+            }
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-in, .tech-node, .draft-card, .ref-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add hover effects to step cards
+        document.querySelectorAll('.step-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+
+</html>
