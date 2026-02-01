@@ -1263,3 +1263,216 @@ body {
         padding: 18px;
     }
 }
+
+/* ========================================
+   Template Upload Section (Step 3)
+   ======================================== */
+.template-upload {
+    border: 1px solid rgba(20, 184, 166, 0.3) !important;
+    background: rgba(20, 184, 166, 0.05) !important;
+}
+
+.upload-badge {
+    padding: 4px 12px;
+    background: linear-gradient(135deg, #14b8a6 0%, #2dd4bf 100%);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+}
+
+.upload-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px;
+    background: rgba(20, 184, 166, 0.08);
+    border: 2px dashed rgba(20, 184, 166, 0.4);
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.upload-box:hover {
+    border-color: #14b8a6;
+    background: rgba(20, 184, 166, 0.15);
+    transform: translateY(-2px);
+}
+
+.upload-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+}
+
+.upload-content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.upload-title {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #2dd4bf;
+}
+
+.upload-desc {
+    font-size: 0.85rem;
+    color: var(--text-medium);
+}
+
+.upload-note {
+    font-size: 0.8rem;
+    color: #5eead4;
+    font-style: italic;
+    padding: 8px 12px;
+    background: rgba(20, 184, 166, 0.1);
+    border-radius: var(--border-radius-sm);
+    margin-top: 4px;
+}
+
+/* ========================================
+   Sub-Decision (User Upload Check)
+   ======================================== */
+.sub-decision {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.small-decision-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.small-diamond {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.3) 0%, rgba(244, 114, 182, 0.3) 100%);
+    border: 2px solid rgba(236, 72, 153, 0.6);
+    transform: rotate(45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.small-diamond .decision-icon {
+    transform: rotate(-45deg);
+    font-size: 1.5rem;
+}
+
+.sub-decision-text {
+    font-size: 0.85rem;
+    color: #f9a8d4;
+    text-align: center;
+    margin-top: 8px;
+}
+
+.sub-branches {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 15px;
+}
+
+.sub-branch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-template-node {
+    background: rgba(20, 184, 166, 0.15) !important;
+    border-color: rgba(20, 184, 166, 0.4) !important;
+    color: #5eead4 !important;
+}
+
+/* Responsive for sub-branches */
+@media (max-width: 768px) {
+    .sub-branches {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .upload-box {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* ========================================
+   Priority Labels & Tags
+   ======================================== */
+.priority-label {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 20px;
+    padding: 10px 24px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%);
+    border: 1px solid rgba(99, 102, 241, 0.5);
+    border-radius: 25px;
+    display: inline-block;
+}
+
+.priority-tag {
+    margin-top: 8px;
+    padding: 4px 12px;
+    background: linear-gradient(135deg, #14b8a6 0%, #2dd4bf 100%);
+    border-radius: 15px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Priority Diamond Colors */
+.priority-1-diamond {
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.3) 0%, rgba(45, 212, 191, 0.3) 100%) !important;
+    border-color: rgba(20, 184, 166, 0.6) !important;
+}
+
+.priority-2-diamond {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(168, 85, 247, 0.3) 100%) !important;
+    border-color: rgba(139, 92, 246, 0.6) !important;
+}
+
+/* ========================================
+   Fallback Section (AI Generation)
+   ======================================== */
+.fallback-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px dashed rgba(239, 68, 68, 0.3);
+    border-radius: var(--border-radius-md);
+    margin-top: 10px;
+}
+
+.fallback-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #fca5a5;
+    padding: 6px 14px;
+    background: rgba(239, 68, 68, 0.2);
+    border-radius: 15px;
+    margin-bottom: 8px;
+}
+
+/* Update decision question styling for numbered steps */
+.decision-question {
+    font-weight: 600;
+}

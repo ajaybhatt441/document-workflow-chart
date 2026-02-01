@@ -35,16 +35,20 @@
 flowchart TD
     subgraph USER["👤 USER WORKFLOW"]
         A[🌍 Step 1: Select Jurisdiction<br/>Country/State] --> B[📋 Step 2: Select Request Type<br/>e.g., AGM, Dividend, Banking]
-        B --> C[✏️ Step 3: Fill Details<br/>+ Choose Minutes OR Resolution<br/>+ Optional User Notes]
+        B --> C[✏️ Step 3: Fill Details<br/>+ Choose Minutes OR Resolution<br/>+ Optional User Notes<br/>+ Upload Custom Template]
         C --> D[🤖 Step 4: Generate 3 Drafts]
     end
     
-    subgraph TECH["⚙️ TECH STACK"]
-        D --> E{🔍 Check Blob Storage<br/>Template Exists?}
-        E -->|YES| F[📦 Fetch Template]
-        E -->|NO| G[🤖 Generate via LLM]
-        G --> H[💾 Store in Blob]
-        H --> F
+    subgraph TECH["⚙️ TECH STACK - Template Priority"]
+        D --> U{📤 User Uploaded<br/>Template?}
+        U -->|YES - Priority 1| T1[📎 Use User Template]
+        U -->|NO| E{🔍 Check Blob Storage<br/>Template Exists?}
+        E -->|YES - Priority 2| T2[📦 Fetch from Blob]
+        E -->|NO - Priority 3| H[🤖 Generate via LLM]
+        H --> S[💾 Store in Blob]
+        S --> T2
+        T1 --> F[🔀 Template Ready]
+        T2 --> F
         F --> I[✨ Generate Outputs]
     end
     
@@ -58,13 +62,16 @@ flowchart TD
     style B fill:#06b6d4,stroke:#0891b2,color:#fff
     style C fill:#f59e0b,stroke:#d97706,color:#fff
     style D fill:#10b981,stroke:#059669,color:#fff
+    style U fill:#14b8a6,stroke:#0d9488,color:#fff
+    style T1 fill:#14b8a6,stroke:#0d9488,color:#fff
     style E fill:#8b5cf6,stroke:#7c3aed,color:#fff
-    style F fill:#22c55e,stroke:#16a34a,color:#fff
-    style G fill:#ef4444,stroke:#dc2626,color:#fff
-    style H fill:#eab308,stroke:#ca8a04,color:#fff
-    style I fill:#3b82f6,stroke:#2563eb,color:#fff
-    style J fill:#a855f7,stroke:#9333ea,color:#fff
-    style K fill:#14b8a6,stroke:#0d9488,color:#fff
+    style T2 fill:#22c55e,stroke:#16a34a,color:#fff
+    style H fill:#ef4444,stroke:#dc2626,color:#fff
+    style S fill:#eab308,stroke:#ca8a04,color:#fff
+    style F fill:#3b82f6,stroke:#2563eb,color:#fff
+    style I fill:#a855f7,stroke:#9333ea,color:#fff
+    style J fill:#ec4899,stroke:#db2777,color:#fff
+    style K fill:#06b6d4,stroke:#0891b2,color:#fff
     style L fill:#f97316,stroke:#ea580c,color:#fff
                 </pre>
             </div>
@@ -241,6 +248,22 @@ flowchart TD
                                     additional notes you want included in the document...</span>
                             </div>
                         </div>
+
+                        <div class="sub-section template-upload">
+                            <div class="sub-header">
+                                <span class="upload-badge">Optional</span>
+                                <span class="sub-title">Upload Your Own Template</span>
+                            </div>
+                            <div class="upload-box">
+                                <div class="upload-icon">📤</div>
+                                <div class="upload-content">
+                                    <span class="upload-title">Drag & Drop or Click to Upload</span>
+                                    <span class="upload-desc">Upload your custom template (.docx, .pdf, .txt)</span>
+                                    <span class="upload-note">🥇 Highest Priority: Your uploaded template will be used
+                                        first, before checking pre-existing templates or AI generation</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -307,16 +330,18 @@ flowchart TD
                     <!-- Arrow -->
                     <div class="tech-arrow">↓</div>
 
-                    <!-- Decision Diamond -->
+                    <!-- Decision Diamond 1: Check User Upload (PRIORITY 1) -->
                     <div class="decision-container">
+                        <div class="priority-label">Priority Check Order</div>
+
                         <div class="tech-node decision-node">
-                            <div class="diamond-shape">
+                            <div class="diamond-shape priority-1-diamond">
                                 <div class="diamond-content">
-                                    <span class="decision-icon">🔍</span>
-                                    <span class="decision-text">Check Blob Storage</span>
+                                    <span class="decision-icon">📤</span>
+                                    <span class="decision-text">User Template?</span>
                                 </div>
                             </div>
-                            <p class="decision-question">Template exists for this combination?</p>
+                            <p class="decision-question">① First: Did user upload a custom template?</p>
                         </div>
 
                         <!-- Decision Branches -->
@@ -324,22 +349,53 @@ flowchart TD
                             <div class="branch yes-branch">
                                 <span class="branch-label yes-label">✓ YES</span>
                                 <div class="branch-arrow">↓</div>
-                                <div class="tech-node small-node fetch-node">
-                                    <div class="node-icon">📦</div>
-                                    <span>Fetch Template from Blob</span>
+                                <div class="tech-node small-node user-template-node">
+                                    <div class="node-icon">📎</div>
+                                    <span>Use User's Template</span>
+                                    <div class="priority-tag">Highest Priority</div>
                                 </div>
                             </div>
                             <div class="branch no-branch">
                                 <span class="branch-label no-label">✗ NO</span>
                                 <div class="branch-arrow">↓</div>
-                                <div class="tech-node small-node generate-node">
-                                    <div class="node-icon">🤖</div>
-                                    <span>Generate Template via LLM</span>
-                                </div>
-                                <div class="branch-arrow">↓</div>
-                                <div class="tech-node small-node store-node">
-                                    <div class="node-icon">💾</div>
-                                    <span>Store in Blob for Future Use</span>
+
+                                <!-- Decision Diamond 2: Check Blob Storage (PRIORITY 2) -->
+                                <div class="sub-decision">
+                                    <div class="tech-node small-decision-node">
+                                        <div class="small-diamond priority-2-diamond">
+                                            <span class="decision-icon">🔍</span>
+                                        </div>
+                                        <p class="sub-decision-text">② Second: Check Blob Storage</p>
+                                    </div>
+
+                                    <div class="sub-branches">
+                                        <div class="sub-branch yes-sub">
+                                            <span class="branch-label yes-label">✓ EXISTS</span>
+                                            <div class="branch-arrow">↓</div>
+                                            <div class="tech-node small-node fetch-node">
+                                                <div class="node-icon">📦</div>
+                                                <span>Fetch from Blob</span>
+                                            </div>
+                                        </div>
+                                        <div class="sub-branch no-sub">
+                                            <span class="branch-label no-label">✗ NOT FOUND</span>
+                                            <div class="branch-arrow">↓</div>
+
+                                            <!-- AI Generation (PRIORITY 3 - FALLBACK) -->
+                                            <div class="fallback-section">
+                                                <div class="fallback-label">③ Fallback: AI Generation</div>
+                                                <div class="tech-node small-node generate-node">
+                                                    <div class="node-icon">🤖</div>
+                                                    <span>Generate via LLM</span>
+                                                </div>
+                                                <div class="branch-arrow">↓</div>
+                                                <div class="tech-node small-node store-node">
+                                                    <div class="node-icon">💾</div>
+                                                    <span>Store in Blob</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
